@@ -1,10 +1,10 @@
 /*
-	класс для комплексного числа
+	Class for complex number
 */
 
 /*
 	TEMPLATE:
-	[число] + [число] * [i]
+	[number] + [number] * [i]
 */
 
 #pragma once
@@ -14,9 +14,9 @@ using namespace std;
 
 class Complex {
 private:
-	double real; // действительная часть
-	double imaginaryMultiplier; // множитель мнимой части
-	bool imaginaryUnit; // флаг на наличие числа i (мнимая единица)
+	double real; // real part
+	double imaginaryMultiplier; // multiplier of an imaginary part
+	bool imaginaryUnit; // flag for the presence of the number i (imaginary unit)
 
 public:
 	Complex() {
@@ -57,7 +57,7 @@ public:
 
 	void setImaginaryMultiplier(double number) {
 		this->imaginaryMultiplier = number;
-		// если множетель мнимой части раен 0, то число i можно убрать
+		// if the factor of the imaginary part is 0, then the number i can be removed
 		if (!number) {
 			this->imaginaryUnit = false;
 		}
@@ -72,7 +72,7 @@ public:
 			return;
 		}
 		this->imaginaryUnit = flag;
-		// если i отсутствует, то его множитель мнимой части не имеет смысла
+		// if i is absent, then its imaginary factor multiplier does not make sense
 		if (!flag) {
 			this->imaginaryMultiplier = 0;
 		}
@@ -82,7 +82,7 @@ public:
 
 	void print(bool needNewLine = true) {
 		cout << this->getReal() << " ";
-		// если множитель мнимой части равен 0 ИЛИ выражение не содержит число i, то мнимую часть можно не писать
+		// if the factor of the imaginary part is 0 OR the expression does not contain the number i, then the imaginary part can be omitted
 		if (this->imaginaryMultiplier != 0 && this->imaginaryUnit) {
 			if (this->imaginaryMultiplier > 0) {
 				cout << "+ ";
@@ -94,12 +94,12 @@ public:
 		}
 	}
 
-	// возвращает действительную часть
+	// returns the real part
 	string string_getReal() {
 		return to_string(this->real);
 	}
 
-	// возвращает мнимую часть
+	// returns the imaginary part
 	string getImaginary() {
 		if (this->imaginaryMultiplier == 0 || !this->imaginaryUnit) {
 			return "";
@@ -107,7 +107,7 @@ public:
 		return to_string(this->imaginaryMultiplier) + (this->imaginaryUnit ? " * i" : "");
 	}
 
-	// возвращает модуль комплексного числа
+	// returns the modulus of a complex number
 	double getModulus() {
 		return sqrt(this->real * this->real + this->imaginaryMultiplier * this->imaginaryMultiplier);
 	}
